@@ -1,7 +1,8 @@
-import { Card, Icon, Image } from 'semantic-ui-react'
+import ComicModal from './ComicModal'
+import { Card, Icon, Image, Button, Modal } from 'semantic-ui-react'
 
 function ComicCard({comic}){
-  const { id, title, author, publisher, summary, image_url } = comic
+  const { id, title, author, image_url } = comic
   
   return(
     <div class="ui card">
@@ -10,18 +11,12 @@ function ComicCard({comic}){
         <Card.Content>
           <Card.Header>{title}</Card.Header>
           <Card.Meta>
-            <span className='date'>{author}</span>
-            <span className='date'>Published by: {publisher}</span>
+            <span className='date'>Written by: {author}</span>
           </Card.Meta>
-          <Card.Description>
-            {summary}
-          </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
-          <Icon name='user' />
-           22 Friends
-          </a>
+          <Button class="ui button">Follow</Button>
+          <ComicModal id={id}/>
         </Card.Content>
       </Card>
     </div>
