@@ -1,11 +1,26 @@
+import { useState } from 'react'
 import { Button, Form, Message } from 'semantic-ui-react'
 
 function Login(){
+  const [email, setEmail] = useState("")
+
+  function handleFormSubmit(event) {
+    event.preventDefault()
+    
+    // do stuff
+    fetch(`http://localhost:9292/users/login/${email}`)
+      .then((resp) => resp.json())
+      .then(queriedUser => {
+        console.log(queriedUser)
+        
+      })
+  }
+
   return(
     <div>
       <h1>Login</h1>
-      <Form error>
-        <Form.Input label='Email' placeholder='joe@schmoe.com' />
+      <Form onSubmit={handleFormSubmit} >
+        <Form.Input label='Email' placeholder='joe@schmoe.com' value={email} onChange={e => setEmail(e.target.value)}/>
         <Message
           error
           header='Action Forbidden'
