@@ -8,7 +8,7 @@ function ComicModal({id}){
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:9292/comics/2`)
+    fetch(`http://localhost:9292/comics/${id}`)
       .then(res => res.json())
       .then(comicData => {
         setComic(comicData)
@@ -18,7 +18,7 @@ function ComicModal({id}){
     
   if (!isLoaded) return <h3>Loading...</h3>
 
-  const { title, author, image_url, publisher, summary, reviews} = comic
+  const { title, author, image_url, publisher, issue_number, issue_title, summary, reviews} = comic
 
   const review_array = reviews.map(reviewObj => {
     return ( 
@@ -46,12 +46,11 @@ function ComicModal({id}){
       <Modal.Content image>
         <Image size='medium' src={image_url} wrapped />
         <Modal.Description>
-          <Header>Default Profile Image</Header>
+          <Header>{issue_title}</Header>
+          <p>Issue #{issue_number}</p>
           <p>Written by: {author}</p>
           <p>Publiser: {publisher}</p>
-          <p>
-            Summary: {summary}
-          </p>
+          <p>{summary}</p>
           <Comment.Group>
             {review_array}
             <Form reply>
