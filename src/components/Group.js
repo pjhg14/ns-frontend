@@ -1,25 +1,29 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Comment, Form, Menu } from "semantic-ui-react";
+import { Button, Comment, Form, Menu } from "semantic-ui-react";
+import PostList from "./PostList";
 
 function Group(){
+  const [group, setGroup] =  useState(null)
+  const [newGroupTitle, setNewGroupTitle] = useState(null)
   const [groups, setGroups] = useState([])
 
+  const groupList = groups.map(groupObj => {
+      return(
+          <Menu.Item key={groupObj.id} onClick={() => {setGroup(groupObj)}}>{groupObj.title}</Menu.Item>
+      )
+  })
+
   useEffect(() => {
-    fetch(`http://localhost:9292/groups`)
+      fetch(`http://localhost:9292/groups`)
       .then(res => res.json())
       .then(groupData => {
-        setGroups(groupData)
+          setGroups(groupData)
       })
   }, []);
 
-  console.log("hi")
-
-  const groupList = groups.map(groupObj => {
-    return(
-      <p key={groupObj.id}>{groupObj.title}</p>
-    )
-  })
+  function handleFormSubmit() {
+    
+  }
 
   return(
     <div>
@@ -28,13 +32,13 @@ function Group(){
       <Menu fluid vertical tabular>
         {groupList}
       </Menu>
-
-      {/* group form */}
-      <Form></Form>
-      {/* post list */}
-      <Comment>
-        {/* post form */} 
-      </Comment>
+      
+      <Form onSubmit={handleFormSubmit} >
+        <Form.Input label='Create new Group' placeholder='joe@schmoe.com' 
+          value={newGroupTitle} onChange={e => setNewGroupTitle(e.target.value)}/>
+        <Button>Submit</Button>
+      </Form>
+      {group && <PostList group={group} setGroup={setGroup}/>}
       
     </div>
   )

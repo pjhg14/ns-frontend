@@ -1,7 +1,7 @@
 import Header from './Header'
 import Login from './Login'
 import ComicPage from './ComicPage'
-import Group from './Group'
+import Group from './group-page/Group'
 import AddComicForm from './AddComicForm'
 import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from 'styled-components'
