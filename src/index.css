@@ -35,4 +35,23 @@ div.ui.card>.image>img, .ui.cards>.card>.image>img {
   background-size: contain;
 }
 
+.form {
+  padding: 2em;
+  margin: 0 auto;
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  align-content: center;
+}
+
+.input {
+  margin: .5em;
+  font-family: 'Crimson Text', serif;
+}
+
+.label {
+  font-family: 'Luckiest Guy';
+  font-size: 25px;
+  padding-top: 20px;
+}
 
