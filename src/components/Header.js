@@ -14,7 +14,7 @@ function Header(){
     <h1 onClick={handleHomeClick}>NerdSpace</h1>
     <nav>
       <NavLink className="button" to="/comics">Comics</NavLink>
-      <NavLink className="button" to="/discussion">Discussion</NavLink>
+      <NavLink className="button" to="/groups">Groups</NavLink>
       <NavLink className="button" to="/addComic">Add a Comic</NavLink>
     </nav>
   </div>
