@@ -1,5 +1,4 @@
 import ComicModal from './ComicModal'
-import { Button } from 'semantic-ui-react'
 
 function ComicCard({comic}){
   const { id, title, author, image_url } = comic
@@ -17,7 +16,6 @@ function ComicCard({comic}){
             </div>
           </div>
           <div class="extra content">
-            <Button>Follow</Button>
             <ComicModal id={id}/>
         </div>
       </div>
