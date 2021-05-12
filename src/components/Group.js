@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Comment, Form, Menu } from "semantic-ui-react";
+import AddGroupForm from "./AddGroupForm";
 import PostList from "./PostList";
 
 function Group(){
   const [group, setGroup] =  useState(null)
-  const [newGroupTitle, setNewGroupTitle] = useState(null)
+  const [newGroupTitle, setNewGroupTitle] = useState("")
   const [groups, setGroups] = useState([])
 
   const groupList = groups.map(groupObj => {
@@ -21,8 +22,14 @@ function Group(){
       })
   }, []);
 
-  function handleFormSubmit() {
-    
+  function handleAddGroup(newGroup) {
+    const newArray = [...groups, newGroup]
+    setGroups(newArray)
+  }
+
+  function handleAddPost(newPost) {
+    const newArray = [...group.posts, newPost]
+
   }
 
   return(
@@ -33,12 +40,8 @@ function Group(){
         {groupList}
       </Menu>
       
-      <Form onSubmit={handleFormSubmit} >
-        <Form.Input label='Create new Group' placeholder='joe@schmoe.com' 
-          value={newGroupTitle} onChange={e => setNewGroupTitle(e.target.value)}/>
-        <Button>Submit</Button>
-      </Form>
-      {group && <PostList group={group} setGroup={setGroup}/>}
+      <AddGroupForm onGroupAdd={handleAddGroup}/>
+      {group && <PostList group={group} setGroup={handleAddPost}/>}
       
     </div>
   )
