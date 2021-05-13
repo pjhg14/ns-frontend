@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Button, Image, Modal, Comment, Form, Rating } from 'semantic-ui-react'
+import { Button, Image, Modal, Comment, Form, Rating, Icon } from 'semantic-ui-react'
 import { UserContext } from './App'
 
 function ComicModal({id}){
@@ -31,6 +31,13 @@ function ComicModal({id}){
           <Comment.Author>{reviewObj.user.name}</Comment.Author>
           <Comment.Text>{reviewObj.content}</Comment.Text>
           <Comment.Text>My Rating: {reviewObj.rating}</Comment.Text>
+          <Comment.Actions>
+            {reviewObj.user.id === user.get.id &&
+              <Comment.Action onClick={() => handleReviewDelete(reviewObj)}>
+                <Icon name='trash' />
+              </Comment.Action>
+            }
+          </Comment.Actions>
         </Comment.Content>
       </Comment>
     )
@@ -69,6 +76,16 @@ function handleReviewSubmit(e){
       setUserReview("")
       console.log(updatedComic)
     })
+  }
+  
+  function handleReviewDelete(target) {
+    fetch("http://localhost:9292/reviews/" + target.id, {
+            method: "DELETE",
+        })
+            .then((resp) => resp.json())
+            .then(updatedComic => {
+                setComic(updatedComic)
+            });
   }
 
   return(

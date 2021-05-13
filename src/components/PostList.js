@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Button, Comment, Form } from "semantic-ui-react"
+import { Button, Comment, Form, Icon } from "semantic-ui-react"
 import { UserContext } from "./App"
 
 function PostList({ group }) {
@@ -22,6 +22,12 @@ function PostList({ group }) {
                 <Comment.Content>
                     <Comment.Author>{post.user.name}</Comment.Author>
                     <Comment.Text>{post.content}</Comment.Text>
+                    <Comment.Actions>
+                        {post.user.id === user.get.id && <Comment.Action onClick={() => handleDeletePost(post)}>
+                            <Icon name='trash' />
+                            Delete
+                        </Comment.Action>}
+                    </Comment.Actions>
                 </Comment.Content>
             </Comment>
         )
@@ -48,6 +54,16 @@ function PostList({ group }) {
                 setPosts([...posts, newPost])
                 setUserPost("")
             })
+    }
+
+    function handleDeletePost(target) {
+        fetch("http://localhost:9292/posts/" + target.id, {
+            method: "DELETE",
+        })
+            .then((resp) => resp.json())
+            .then(newPosts => {
+                setPosts(newPosts)
+            });
     }
 
     return(
