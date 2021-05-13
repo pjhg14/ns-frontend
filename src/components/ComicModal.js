@@ -48,7 +48,7 @@ function handleReviewSubmit(e){
     content: userReview,
     // rating: userRating,
     comic_id: parseInt(id),
-    user_id: 45,
+    user_id: 131,
     rating: 3
   }
   fetch("http://localhost:9292/reviews", {
