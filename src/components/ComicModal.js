@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Button, Image, Modal, Comment, Form } from 'semantic-ui-react'
+import { UserContext } from './App'
 
 function ComicModal({id}){
-  
+  const user = useContext(UserContext)
   const [comic, setComic] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [open, setOpen] = useState(false)
@@ -48,7 +49,7 @@ function handleReviewSubmit(e){
     content: userReview,
     // rating: userRating,
     comic_id: parseInt(id),
-    user_id: 131,
+    user_id: user.get.id,
     rating: 3
   }
   fetch("http://localhost:9292/reviews", {
@@ -90,7 +91,7 @@ function handleReviewSubmit(e){
             <Form onSubmit={handleReviewSubmit} reply>
               <Form.TextArea value={userReview} onChange={e => setUserReview(e.target.value)}/>
               {/* <Rating onRate={rateComic} value={userRating} maxRating={5} clearable/> */}
-              <Button content='Add Review' labelPosition='left' icon='edit' primary />
+              <Button content='Add Review' labelPosition='left' icon='edit' disabled={user.get.id <= 0} primary />
             </Form>
           </Comment.Group>
         </Modal.Description>

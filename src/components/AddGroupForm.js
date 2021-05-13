@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Button, Input } from "semantic-ui-react"
+import { UserContext } from "./App"
 
 function AddGroupForm({ onGroupAdd }) {
+    const user = useContext(UserContext)
     const [title, setTitle] = useState("")
 
     function handleFormSubmit(event) {
@@ -9,7 +11,7 @@ function AddGroupForm({ onGroupAdd }) {
 
         const newGroup = {
             title: title,
-            user_id: 131
+            user_id: user.get.id
         }
 
         fetch("http://localhost:9292/groups", {
@@ -30,7 +32,7 @@ function AddGroupForm({ onGroupAdd }) {
             <label htmlFor="usertitle" className="label">Thread Topic</label>
             <Input className="input" id="usertitle" value={title} onChange={e => setTitle(e.target.value)} 
                 type="text" placeholder="Thread Topic"></Input>
-            <button className="ui button">Create New Thread</button>
+            <button className="ui button" disabled={user.get.id <= 0}>Create New Thread</button>
         </form>
     )
 }

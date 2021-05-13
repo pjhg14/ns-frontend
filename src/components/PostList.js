@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Button, Comment, Form } from "semantic-ui-react"
+import { UserContext } from "./App"
 
 function PostList({ group, setGroup }) {
     const { id } = group
+    const user = useContext(UserContext)
     const [userPost, setUserPost] = useState("")
     const [posts, setPosts] = useState([])
 
@@ -30,7 +32,7 @@ function PostList({ group, setGroup }) {
 
         const newPost = {
             group_id: id,
-            user_id: 131,
+            user_id: user.get.id,
             content: userPost
         }
 
@@ -54,7 +56,7 @@ function PostList({ group, setGroup }) {
             {postList}
             <Form onSubmit={handlePostSubmit} reply>
               <Form.TextArea value={userPost} onChange={e => setUserPost(e.target.value)}/>
-              <Button content='Add to Thread' labelPosition='left' icon='edit' primary />
+              <Button content='Add to Thread' labelPosition='left' icon='edit' disabled={user.get.id <= 0} primary />
             </Form>
         </Comment.Group>
     )

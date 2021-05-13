@@ -5,6 +5,7 @@ import Group from './Group'
 import AddComicForm from './AddComicForm'
 import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from 'styled-components'
+import React, { useState } from 'react'
 
 const GlobalStyle= createGlobalStyle`
   body {
@@ -42,26 +43,37 @@ const GlobalStyle= createGlobalStyle`
 
 `
 
+export const UserContext = React.createContext(null)
+
+
 function App() {
+  const [user, setUser] = useState({id: -1, name: "Guest"})
+  const userState = {
+      get: user,
+      set: setUser
+  }
+
   return (
-    <div>
-      <GlobalStyle />
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route expact path="/comics">
-          <ComicPage />
-        </Route>
-        <Route exact path="/groups">
-          <Group />
-        </Route>
-        <Route exact path="/addComic">
-          <AddComicForm />
-        </Route>
-      </Switch>
-    </div>
+    <UserContext.Provider value={userState}>
+      <div>
+        <GlobalStyle />
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route expact path="/comics">
+            <ComicPage />
+          </Route>
+          <Route exact path="/groups">
+            <Group />
+          </Route>
+          <Route exact path="/addComic">
+            <AddComicForm />
+          </Route>
+        </Switch>
+      </div>
+    </UserContext.Provider>
   );
 }
 
