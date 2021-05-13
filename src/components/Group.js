@@ -5,7 +5,6 @@ import PostList from "./PostList";
 
 function Group(){
   const [group, setGroup] =  useState(null)
-  const [newGroupTitle, setNewGroupTitle] = useState("")
   const [groups, setGroups] = useState([])
 
   const groupList = groups.map(groupObj => {
@@ -29,11 +28,6 @@ function Group(){
     setGroups(newArray)
   }
 
-  function handleAddPost(newPost) {
-    const newArray = [...group.posts, newPost]
-
-  }
-
   return(
     <div>
       <div className="header">
@@ -48,7 +42,7 @@ function Group(){
         </Grid.Column>
         <Grid.Column stretched width={12}>
           <Segment>
-          {group && <PostList group={group} setGroup={handleAddPost}/>}
+          {group && <PostList group={group}/>}
           </Segment>
         </Grid.Column>
       </Grid>

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { Button, Comment, Form } from "semantic-ui-react"
 import { UserContext } from "./App"
 
-function PostList({ group, setGroup }) {
+function PostList({ group }) {
     const { id } = group
     const user = useContext(UserContext)
     const [userPost, setUserPost] = useState("")

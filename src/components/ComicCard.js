@@ -5,17 +5,17 @@ function ComicCard({comic}){
   
   return(
     
-      <div class="ui card">
-        <div class="image">
+      <div className="ui card">
+        <div className="image">
           <img src={image_url} alt={title}/>
         </div>
-        <div class="content">
-          <div class="cardHeader">{title}</div>
-            <div class="meta">
+        <div className="content">
+          <div className="cardHeader">{title}</div>
+            <div className="meta">
               <span>Written by: {author}</span>
             </div>
           </div>
-          <div class="extra content">
+          <div className="extra content">
             <ComicModal id={id}/>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Button, Image, Modal, Comment, Form } from 'semantic-ui-react'
+import { Button, Image, Modal, Comment, Form, Rating } from 'semantic-ui-react'
 import { UserContext } from './App'
 
 function ComicModal({id}){
@@ -8,7 +8,7 @@ function ComicModal({id}){
   const [isLoaded, setIsLoaded] = useState(false)
   const [open, setOpen] = useState(false)
   const [userReview, setUserReview] = useState("")
-  // const [userRating, setUserRating] = useState(null)
+  const [userRating, setUserRating] = useState("")
 
   useEffect(() => {
     fetch(`http://localhost:9292/comics/${id}`)
@@ -21,7 +21,7 @@ function ComicModal({id}){
     
   if (!isLoaded) return <h3>Loading...</h3>
 
-  const { title, author, image_url, publisher, issue_number, issue_title, summary, reviews} = comic
+  const { title, author, image_url, publisher, issue_number, issue_title, rating_average, summary, reviews} = comic
 
 
   const review_array = reviews.map(reviewObj => {
@@ -43,6 +43,10 @@ function ComicModal({id}){
 //     setComic({...comic, reviews:[...comic.reviews, newReview]})
 // }
 
+function rateComic(e, { rating, maxRating }){
+  setUserRating(rating)
+}
+
 function handleReviewSubmit(e){
   e.preventDefault(); 
   const reviewData = {
@@ -50,7 +54,7 @@ function handleReviewSubmit(e){
     // rating: userRating,
     comic_id: parseInt(id),
     user_id: user.get.id,
-    rating: 3
+    rating: parseInt(userRating)
   }
   fetch("http://localhost:9292/reviews", {
     method: "POST",
@@ -84,13 +88,13 @@ function handleReviewSubmit(e){
           <p>Written by: {author}</p>
           <p>Publisher: {publisher}</p>
           <p>{summary}</p>
-          <p>Average User Rating: </p>
+          <p>Average User Rating: {rating_average}</p>
           <Comment.Group>
             <h3>Reviews</h3>
             {review_array}
             <Form onSubmit={handleReviewSubmit} reply>
               <Form.TextArea value={userReview} onChange={e => setUserReview(e.target.value)}/>
-              {/* <Rating onRate={rateComic} value={userRating} maxRating={5} clearable/> */}
+              <Rating onRate={rateComic} value={userRating} maxRating={5} clearable/>
               <Button content='Add Review' labelPosition='left' icon='edit' disabled={user.get.id <= 0} primary />
             </Form>
           </Comment.Group>

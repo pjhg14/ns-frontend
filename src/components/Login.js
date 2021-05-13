@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Button, Form, Message, Input } from 'semantic-ui-react'
+import { Button, Form, Input } from 'semantic-ui-react'
 import { UserContext } from './App'
 import { useHistory } from "react-router-dom";
 
@@ -49,13 +49,14 @@ function Login(){
 
   return(
     <div>
-      <h2>{toggle ? "Login" : "Sign-up"}</h2>
+      <h2>Welcome</h2>
+      <p>Nerdspace is a place for you to gather with your fellow geeks and talk about the things you want. Sign up to join our thread board, as well as review all the Nerdy things we have to offer!</p>
       {toggle ?
         (<Form onSubmit={handleLogin} >
           <label htmlFor="useremail" className="label">Your Email</label>
           <Input className="input" id="useremail" value={userEmail} 
             onChange={e => setUserEmail(e.target.value)} type="text" placeholder="Your Email"></Input>
-          <Button>Submit</Button>
+          <Button>Login</Button>
         </Form>)
       :
         (<Form onSubmit={handleSignUp} >
@@ -65,10 +66,12 @@ function Login(){
           <label htmlFor="useremail" className="label">Your Email</label>
           <Input className="input" id="useremail" value={userEmail2} 
             onChange={e => setUserEmail2(e.target.value)} type="text" placeholder="Your Email"></Input>
-          <Button>Submit</Button>
+          <Button>Sign Up</Button>
         </Form>)
       }
+      <p>{toggle ? "Not a User?" : "Already a User?"}</p>
       <Button onClick={() => setToggle(!toggle)}>{toggle ? "Sign-up" : "Login"}</Button>
+      
     </div>
   )
 }

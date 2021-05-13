@@ -32,7 +32,7 @@ function AddGroupForm({ onGroupAdd }) {
             <label htmlFor="usertitle" className="label">Thread Topic</label>
             <Input className="input" id="usertitle" value={title} onChange={e => setTitle(e.target.value)} 
                 type="text" placeholder="Thread Topic"></Input>
-            <button className="ui button" disabled={user.get.id <= 0}>Create New Thread</button>
+            <Button className="ui button" disabled={user.get.id <= 0}>Create New Thread</Button>
         </form>
     )
 }
