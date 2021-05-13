@@ -8,29 +8,36 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle= createGlobalStyle`
   body {
-      margin: 0 20% 0 20%;
-  }
+  margin: 0 20% 0 20%;
+  background-color: #fabb9e;
+}
 
   h1 {
     font-size: 8em;
-    font-family: 'Luckiest Guy';
+    font-family: 'Permanent Marker', cursive;
     text-align: center;
+    color: #cf1714
   }
 
   h2 {
     font-size: 4em;
+    font-family: 'Space Grotesk', sans-serif;
   }
 
   h3 {
     font-size: 2em;
-    font-family: 'Luckiest Guy';
+    font-family: 'Space Grotesk', sans-serif;
   }
 
   a {
-    font-family: 'Luckiest Guy';
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 2em;
     padding-right: 15px;
-    color: black
+    color: #144881
+  }
+
+  p {
+    font-family: 'Quattrocento', serif;
   }
 
 `

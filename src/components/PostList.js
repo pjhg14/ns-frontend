@@ -1,9 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Comment, Form } from "semantic-ui-react"
 
 function PostList({ group, setGroup }) {
-    const { id, posts } = group
+    const { id } = group
     const [userPost, setUserPost] = useState("")
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/posts/${id}`)
+        .then(res => res.json())
+        .then(postData => {
+          setPosts(postData)
+        })
+    }, [id])
 
     const postList = posts.map(post => {
         return (
@@ -33,8 +42,9 @@ function PostList({ group, setGroup }) {
             body: JSON.stringify(newPost),
         })
             .then((resp) => resp.json())
-            .then(updatedGroup => {
-                setGroup(updatedGroup)
+            .then(newPost => {
+                setPosts([...posts, newPost])
+                setUserPost("")
             })
     }
 
