@@ -44,7 +44,7 @@ function PostList({ group, setGroup }) {
             {postList}
             <Form onSubmit={handlePostSubmit} reply>
               <Form.TextArea value={userPost} onChange={e => setUserPost(e.target.value)}/>
-              <Button content='Add Review' labelPosition='left' icon='edit' primary />
+              <Button content='Add to Thread' labelPosition='left' icon='edit' primary />
             </Form>
         </Comment.Group>
     )

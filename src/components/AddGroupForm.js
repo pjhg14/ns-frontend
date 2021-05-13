@@ -27,10 +27,10 @@ function AddGroupForm({ onGroupAdd }) {
     
     return(
         <form className="form" onSubmit={handleFormSubmit}>
-            <label htmlFor="usertitle" className="label">Group Title</label>
+            <label htmlFor="usertitle" className="label">Thread Topic</label>
             <Input className="input" id="usertitle" value={title} onChange={e => setTitle(e.target.value)} 
-                type="text" placeholder="Group Title"></Input>
-            <button className="ui button">Create new group</button>
+                type="text" placeholder="Thread Topic"></Input>
+            <button className="ui button">Create New Thread</button>
         </form>
     )
 }

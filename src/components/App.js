@@ -14,11 +14,11 @@ const GlobalStyle= createGlobalStyle`
   h1 {
     font-size: 8em;
     font-family: 'Luckiest Guy';
+    text-align: center;
   }
 
   h2 {
     font-size: 4em;
-    font-family: 'Luckiest Guy';
   }
 
   h3 {

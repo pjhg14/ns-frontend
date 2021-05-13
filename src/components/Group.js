@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Comment, Form, Menu } from "semantic-ui-react";
+import { Grid, Segment, Menu } from "semantic-ui-react";
 import AddGroupForm from "./AddGroupForm";
 import PostList from "./PostList";
 
@@ -10,7 +10,9 @@ function Group(){
 
   const groupList = groups.map(groupObj => {
       return(
-          <Menu.Item key={groupObj.id} onClick={() => {setGroup(groupObj)}}>{groupObj.title}</Menu.Item>
+        <Menu.Item key={groupObj.id} onClick={() => {setGroup(groupObj)}}
+            name={groupObj.title}
+        />
       )
   })
 
@@ -34,15 +36,22 @@ function Group(){
 
   return(
     <div>
-      <h2>Groups!</h2>
-      {/* list of groups */}
-      <Menu fluid vertical tabular>
-        {groupList}
-      </Menu>
-      
-      <AddGroupForm onGroupAdd={handleAddGroup}/>
-      {group && <PostList group={group} setGroup={handleAddPost}/>}
-      
+      <div className="header">
+        <h2>Threads</h2>
+        <AddGroupForm onGroupAdd={handleAddGroup}/>
+      </div>
+      <Grid>
+        <Grid.Column width={4}>
+          <Menu fluid vertical tabular>
+          {groupList}
+          </Menu>
+        </Grid.Column>
+        <Grid.Column stretched width={12}>
+          <Segment>
+          {group && <PostList group={group} setGroup={handleAddPost}/>}
+          </Segment>
+        </Grid.Column>
+      </Grid>
     </div>
   )
 }

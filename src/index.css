@@ -14,11 +14,12 @@ code {
 
 div.header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-bottom: 1px solid;
   padding-top: 20px;
+  text-align: center;
 }
 
 div.extra.content {
