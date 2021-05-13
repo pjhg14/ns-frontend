@@ -4,7 +4,7 @@ import {Input} from 'semantic-ui-react'
 
 function AddComicForm(){
   const [comicTitle, setComicTitle] = useState("")
-  const [issueNumber, setIssueNumber] = useState(0)
+  const [issueNumber, setIssueNumber] = useState("")
   const [issueTitle, setIssueTitle] = useState("")
   const [author, setAuthor] = useState("")
   const [publisher, setPublisher] = useState("")
@@ -80,7 +80,7 @@ function AddComicForm(){
         <Input className="input" id="usersummary" value={summary} onChange={userSummary} type="text" placeholder="Summary"></Input>
         <label htmlFor="userimageurl" className="label">Cover Image URL</label>
         <Input className="input" id="userimageurl" value={imageURL} onChange={userImageURL} type="text" placeholder="Cover Image URL"></Input>
-        <button class="ui button">Submit New Comic</button>
+        <button className="ui button">Submit New Comic</button>
       </form>
     </div>
   )
