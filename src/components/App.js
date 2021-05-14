@@ -8,39 +8,43 @@ import { createGlobalStyle } from 'styled-components'
 import React, { useState } from 'react'
 
 const GlobalStyle= createGlobalStyle`
-  body {
+body {
   margin: 0 20% 0 20%;
-  background-color: #eae0d5;
+  background-color: #e3b94f;
 }
 
   h1 {
     font-size: 8em;
     font-family: 'Permanent Marker', cursive;
     text-align: center;
-    color: #22333b
+    color: #E24D28
   }
 
   h1:hover {
-    color: #1e70bf;
+    color: #33c1b1;
   }
 
   h2 {
     font-size: 4em;
     font-family: 'Space Grotesk', sans-serif;
-    color: #5E503F
+    color: #264653
   }
 
   h3 {
     font-size: 2em;
     font-family: 'Space Grotesk', sans-serif;
-    color: #5E503F
+    color: #264653
   }
 
   a {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2em;
     padding-right: 15px;
-    color: #5E503F
+    color: #264653
+  }
+
+  a:hover {
+    color: #33c1b1
   }
 
   p {

@@ -5,6 +5,8 @@ code {
     monospace;
 }
 
+
+
 div.header {
   display: flex;
   flex-direction: column;
@@ -19,6 +21,10 @@ div.extra.content {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.trashIcon {
+  font-size: 1em;
 }
 
 .form {
@@ -60,23 +66,40 @@ label.label {
 }
 
 div.ui.segment {
-  background-color: #eae0d5;
+  background-color: #e3b94f;
 }
 
+a#menuItems.item {
+  padding: 15px 0 15px 0;
+}
+
+.ui.column.grid>[class*="four wide"].column, .ui.grid>.column.row>[class*="four wide"].column, .ui.grid>.row>[class*="four wide"].column, .ui.grid>[class*="four wide"].column {
+  border: 1px solid;
+}
+div.ui.vertical.tabular.menu {
+  border-right: none;
+}
 div.ui.modal>.header:not(.ui) {
   font-family: 'Permanent Marker';
   font-size: 4em;
 }
 
-#welcomeText {
+.welcomeText {
   font-size: 2em;
   text-align: center;
+}
+
+#loginText {
+  font-size: 1.5em;
+  line-height: auto;
+  margin: 0;
 }
 
 #toggle {
   display: flex;
   flex-direction: row;
-  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .ui.card>.content, .ui.cards>.card>.content {
@@ -89,4 +112,14 @@ div.ui.modal>.header:not(.ui) {
   margin: auto;
   background-position: center;
   background-size: contain;
+}
+
+div.ui.comments .comment .text {
+  font-family: 'Quattrocento';
+  font-size: 1.5em;
+}
+
+div.ui.comments .comment .author {
+  font-family: 'Quattrocento';
+  font-size: 1.2em;
 }

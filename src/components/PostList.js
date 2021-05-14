@@ -22,7 +22,7 @@ function PostList({ group }) {
                 <Comment.Content>
                     <Comment.Author>{post.user.name}</Comment.Author>
                     <Comment.Text>{post.content}</Comment.Text>
-                    <Comment.Actions>
+                    <Comment.Actions className="trashIcon">
                         {post.user.id === user.get.id && <Comment.Action onClick={() => handleDeletePost(post)}>
                             <Icon name='trash' />
                             Delete
