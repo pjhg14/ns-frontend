@@ -10,36 +10,43 @@ import React, { useState } from 'react'
 const GlobalStyle= createGlobalStyle`
   body {
   margin: 0 20% 0 20%;
-  background-color: #fabb9e;
+  background-color: #eae0d5;
 }
 
   h1 {
     font-size: 8em;
     font-family: 'Permanent Marker', cursive;
     text-align: center;
-    color: #cf1714
+    color: #22333b
+  }
+
+  h1:hover {
+    color: #1e70bf;
   }
 
   h2 {
     font-size: 4em;
     font-family: 'Space Grotesk', sans-serif;
+    color: #5E503F
   }
 
   h3 {
     font-size: 2em;
     font-family: 'Space Grotesk', sans-serif;
+    color: #5E503F
   }
 
   a {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2em;
     padding-right: 15px;
-    color: #144881
+    color: #5E503F
   }
 
   p {
     font-family: 'Quattrocento', serif;
   }
+
 
 `
 

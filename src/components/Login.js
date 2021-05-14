@@ -50,7 +50,7 @@ function Login(){
   return(
     <div>
       <h2>Welcome</h2>
-      <p>Nerdspace is a place for you to gather with your fellow geeks and talk about the things you want. Sign up to join our thread board, as well as review all the Nerdy things we have to offer!</p>
+      <p id="welcomeText">Nerdspace is a place for you to gather with your fellow nerds and talk about the things you want. Sign up to join our thread board, as well as review all the Nerdy things we have to offer!</p>
       {toggle ?
         (<Form onSubmit={handleLogin} >
           <label htmlFor="useremail" className="label">Your Email</label>
@@ -69,9 +69,10 @@ function Login(){
           <Button>Sign Up</Button>
         </Form>)
       }
+      <div id="toggle">
       <p>{toggle ? "Not a User?" : "Already a User?"}</p>
       <Button onClick={() => setToggle(!toggle)}>{toggle ? "Sign-up" : "Login"}</Button>
-      
+      </div>
     </div>
   )
 }

@@ -19,7 +19,7 @@ function ComicModal({id}){
       })
   }, [id]);
     
-  if (!isLoaded) return <h3>Loading...</h3>
+  if (!isLoaded) return <p>Loading...</p>
 
   const { title, author, image_url, publisher, issue_number, issue_title, rating_average, summary, reviews} = comic
 
@@ -42,13 +42,7 @@ function ComicModal({id}){
       </Comment>
     )
     })
-  // function rateComic(e){
-  //   setUserRating(e.target.rating)
-  //   console.log(userRating)
-  // }
-//   function onAddReview(newReview){
-//     setComic({...comic, reviews:[...comic.reviews, newReview]})
-// }
+
 
 function rateComic(e, { rating, maxRating }){
   setUserRating(rating)
@@ -58,7 +52,6 @@ function handleReviewSubmit(e){
   e.preventDefault(); 
   const reviewData = {
     content: userReview,
-    // rating: userRating,
     comic_id: parseInt(id),
     user_id: user.get.id,
     rating: parseInt(userRating)

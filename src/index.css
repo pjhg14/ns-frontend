@@ -21,14 +21,6 @@ div.extra.content {
   align-items: center;
 }
 
-div.ui.card>.image>img, .ui.cards>.card>.image>img {
-  height: 300px;
-  width: auto;
-  margin: auto;
-  background-position: center;
-  background-size: contain;
-}
-
 .form {
   padding: 2em;
   margin: 0 auto;
@@ -36,6 +28,11 @@ div.ui.card>.image>img, .ui.cards>.card>.image>img {
   width: 500px;
   flex-direction: column;
   align-content: center;
+}
+
+#groupform {
+  padding: 0;
+  margin: 0;
 }
 
 .input {
@@ -49,3 +46,47 @@ div.ui.card>.image>img, .ui.cards>.card>.image>img {
   padding-top: 20px;
 }
 
+#groupheader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+label.label {
+  font-family: 'Quattrocento';
+  font-size: 25px;
+  padding-top: 20px;
+}
+
+div.ui.segment {
+  background-color: #eae0d5;
+}
+
+div.ui.modal>.header:not(.ui) {
+  font-family: 'Permanent Marker';
+  font-size: 4em;
+}
+
+#welcomeText {
+  font-size: 2em;
+  text-align: center;
+}
+
+#toggle {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.ui.card>.content, .ui.cards>.card>.content {
+  font-family: 'Permanent Marker';
+}
+
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+  width: auto;
+  height: 400px;
+  margin: auto;
+  background-position: center;
+  background-size: contain;
+}

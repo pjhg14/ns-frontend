@@ -28,7 +28,7 @@ function AddGroupForm({ onGroupAdd }) {
     }
     
     return(
-        <form className="form" onSubmit={handleFormSubmit}>
+        <form className="form" id="groupForm" onSubmit={handleFormSubmit}>
             <label htmlFor="usertitle" className="label">Thread Topic</label>
             <Input className="input" id="usertitle" value={title} onChange={e => setTitle(e.target.value)} 
                 type="text" placeholder="Thread Topic"></Input>

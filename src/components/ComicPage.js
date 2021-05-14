@@ -16,7 +16,7 @@ function ComicPage(){
 
   return (
     <div>
-      <h2>Comics!</h2>
+      <h2>Comics</h2>
         <div className="ui link four cards">
         {comic}
         </div>

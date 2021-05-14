@@ -9,7 +9,7 @@ function Group(){
 
   const groupList = groups.map(groupObj => {
       return(
-        <Menu.Item key={groupObj.id} onClick={() => {setGroup(groupObj)}}
+        <Menu.Item id="menuItems" key={groupObj.id} onClick={() => {setGroup(groupObj)}}
             name={groupObj.title}
         />
       )
@@ -30,7 +30,7 @@ function Group(){
 
   return(
     <div>
-      <div className="header">
+      <div id="groupheader">
         <h2>Threads</h2>
         <AddGroupForm onGroupAdd={handleAddGroup}/>
       </div>

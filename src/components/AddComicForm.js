@@ -64,7 +64,7 @@ function AddComicForm(){
 
   return(
     <div>
-      <h2>Add a Comic!</h2>
+      <h2>Add a Comic</h2>
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="usertitle" className="label">Comic Series Title</label>
         <Input className="input" id="usertitle" value={comicTitle} onChange={userComicTitle} type="text" placeholder="Comic Series Title"></Input>
