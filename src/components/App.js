@@ -8,9 +8,16 @@ import { createGlobalStyle } from 'styled-components'
 import React, { useState } from 'react'
 
 const GlobalStyle= createGlobalStyle`
+
 body {
   margin: 0 20% 0 20%;
   background-color: #e3b94f;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+html {
+  background-color: #ffe195
 }
 
   h1 {

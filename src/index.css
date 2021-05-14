@@ -5,7 +5,27 @@ code {
     monospace;
 }
 
+#navContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
 
+#userStatus {
+  display: flex;
+  justify-content: flex-end;
+  right: 0;
+}
+
+#userNameBar {
+  display: flex;
+}
+
+.ui.comments .comment .actions a:last-child {
+  font-size: 1em;
+}
 
 div.header {
   display: flex;

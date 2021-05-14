@@ -67,7 +67,6 @@ function handleReviewSubmit(e){
     .then(updatedComic => {
       setComic(updatedComic)
       setUserReview("")
-      console.log(updatedComic)
     })
   }
   

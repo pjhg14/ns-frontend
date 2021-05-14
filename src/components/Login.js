@@ -9,18 +9,28 @@ function Login(){
   const [userName, setUserName] = useState("")
   const [userEmail2, setUserEmail2] = useState("")
   const [toggle, setToggle] = useState(true)
+  const [userError, setUserError] = useState(false)
   const history = useHistory()
 
   function handleLogin(event) {
     event.preventDefault()
     
-    // do stuff
+  
     fetch(`http://localhost:9292/users/login/${userEmail}`)
-      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp.status >= 200 && resp.status <=299)
+          {return resp.json()}
+        else
+          throw Error(resp.statusText)
+        })
       .then(queriedUser => {
-        // console.log(queriedUser)
         user.set(queriedUser)
         history.push("/groups")
+      })
+      .catch((error) => {
+        console.log(error)
+        setUserEmail("")
+        setUserError(true)
       })
   }
 
@@ -51,6 +61,7 @@ function Login(){
     <div>
       <h2>Welcome</h2>
       <p className="welcomeText">Nerdspace is a place for you to gather with your fellow nerds and talk about the things you want. Sign up to join our thread board, as well as review all the Nerdy things we have to offer!</p>
+      <p className="welcomeText" style={{color:"red"}}>{userError ? "You don't seem to have an account. Please create one." : ""}</p>
       {toggle ?
         (<Form onSubmit={handleLogin} >
           <label htmlFor="useremail" className="label">Your Email</label>
