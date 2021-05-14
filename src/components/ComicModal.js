@@ -101,6 +101,7 @@ function handleReviewSubmit(e){
           <Comment.Group>
             <h3>Reviews</h3>
             {review_array}
+            <h4 className="rate-title">Rate this comic</h4>
             <Form onSubmit={handleReviewSubmit} reply>
               <Form.TextArea value={userReview} onChange={e => setUserReview(e.target.value)}/>
               <Rating onRate={rateComic} value={userRating} maxRating={5} clearable/>
