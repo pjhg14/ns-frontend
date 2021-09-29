@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import { Button, Image, Modal, Comment, Form, Rating, Icon } from 'semantic-ui-react'
+import { comicsURL, reviewsURL } from '../util/links'
 import { UserContext } from './App'
 
-function ComicModal({id}){
+function ComicModal({ id }){
   const user = useContext(UserContext)
   const [comic, setComic] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -11,7 +12,7 @@ function ComicModal({id}){
   const [userRating, setUserRating] = useState("")
 
   useEffect(() => {
-    fetch(`http://localhost:9292/comics/${id}`)
+    fetch(`${comicsURL}/${id}`)
       .then(res => res.json())
       .then(comicData => {
         setComic(comicData)
@@ -24,7 +25,7 @@ function ComicModal({id}){
   const { title, author, image_url, publisher, issue_number, issue_title, rating_average, summary, reviews} = comic
 
 
-  const review_array = reviews.map(reviewObj => {
+  const reviewArray = reviews.map(reviewObj => {
     return ( 
       <Comment key={reviewObj.id}>
         <Comment.Content>
@@ -41,29 +42,31 @@ function ComicModal({id}){
         </Comment.Content>
       </Comment>
     )
-    })
+  })
 
 
-function rateComic(e, { rating, maxRating }){
+function rateComic(e, { rating }){
   setUserRating(rating)
 }
 
 function handleReviewSubmit(e){
   e.preventDefault(); 
+
   const reviewData = {
     content: userReview,
     comic_id: parseInt(id),
     user_id: user.get.id,
     rating: parseInt(userRating)
   }
-  fetch("http://localhost:9292/reviews", {
+
+  fetch(reviewsURL, {
     method: "POST",
     headers: {
       "Content-type": "application/json"
     },
     body:JSON.stringify(reviewData)
   })
-    .then(r => r.json())
+    .then(resp => resp.json())
     .then(updatedComic => {
       setComic(updatedComic)
       setUserReview("")
@@ -71,25 +74,25 @@ function handleReviewSubmit(e){
   }
   
   function handleReviewDelete(target) {
-    fetch("http://localhost:9292/reviews/" + target.id, {
+    fetch(`${reviewsURL}/${target.id}`, {
             method: "DELETE",
         })
-            .then((resp) => resp.json())
+            .then(resp => resp.json())
             .then(updatedComic => {
                 setComic(updatedComic)
             });
   }
 
   return(
-    <div>
-       <Modal
+    <Modal
+      closeIcon
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       trigger={<Button>Details</Button>}
     >
       <Modal.Header>{title}</Modal.Header>
-      <Modal.Content image>
+      <Modal.Content image scrolling>
         <Image size='medium' src={image_url} wrapped />
         <Modal.Description>
           <h3>{issue_title}</h3>
@@ -97,10 +100,10 @@ function handleReviewSubmit(e){
           <p>Written by: {author}</p>
           <p>Publisher: {publisher}</p>
           <p>{summary}</p>
-          <p>Average User Rating: {rating_average}</p>
+          <p>Average User Rating: {rating_average !== null  ? rating_average : "No Reviews Yet"}</p>
           <Comment.Group>
             <h3>Reviews</h3>
-            {review_array}
+            {reviewArray}
             <h4 className="rate-title">Rate this comic</h4>
             <Form onSubmit={handleReviewSubmit} reply>
               <Form.TextArea value={userReview} onChange={e => setUserReview(e.target.value)}/>
@@ -111,7 +114,6 @@ function handleReviewSubmit(e){
         </Modal.Description>
       </Modal.Content>
     </Modal>
-    </div>
   )
 }
 

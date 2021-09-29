@@ -1,24 +1,22 @@
 import Header from './Header'
-import Login from './Login'
+import LoginPage from './LoginPage'
 import ComicPage from './ComicPage'
-import Group from './Group'
+import GroupPage from './GroupPage'
 import AddComicForm from './AddComicForm'
 import { Switch, Route } from "react-router-dom"
 import { createGlobalStyle } from 'styled-components'
-import React, { useState } from 'react'
+import { createContext, useState } from 'react'
 
 const GlobalStyle= createGlobalStyle`
 
-body {
-  margin: 0 20% 0 20%;
-  background-color: #e3b94f;
-  padding-left: 20px;
-  padding-right: 20px;
-}
+  body {
+    margin: 0 10vw;
+    background-color: #e3b94f;
+  }
 
-html {
-  background-color: #ffe195
-}
+  html {
+    background-color: #ffe195
+  }
 
   h1 {
     font-size: 8em;
@@ -57,39 +55,41 @@ html {
   p {
     font-family: 'Quattrocento', serif;
   }
+  `
 
-
-`
-
-export const UserContext = React.createContext(null)
+export const UserContext = createContext(null)
 
 
 function App() {
   const [user, setUser] = useState({id: -1, name: "Guest"})
   const userState = {
-      get: user,
-      set: setUser
+    get: user,
+    set: setUser
   }
+
+  console.log({user})
 
   return (
     <UserContext.Provider value={userState}>
-      <div>
+      <div className="App">
         <GlobalStyle />
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route expact path="/comics">
-            <ComicPage />
-          </Route>
-          <Route exact path="/groups">
-            <Group />
-          </Route>
-          <Route exact path="/addComic">
-            <AddComicForm />
-          </Route>
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <LoginPage />
+            </Route>
+            <Route expact path="/comics">
+              <ComicPage />
+            </Route>
+            <Route exact path="/groups">
+              <GroupPage />
+            </Route>
+            <Route exact path="/addComic">
+              <AddComicForm />
+            </Route>
+          </Switch>
+        </div>
       </div>
     </UserContext.Provider>
   );

@@ -1,5 +1,5 @@
-import {NavLink} from "react-router-dom"
-import {useHistory} from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { UserContext } from "./App"
 import { useContext } from 'react'
 import { Icon, Popup } from "semantic-ui-react"
@@ -31,9 +31,9 @@ function Header(){
         </div>
         <div id="userNameBar">
           {user.get.id !== -1 && 
-            <p id='userStatus'>
+            <p>
               Welcome, {user.get.name} 
-              <Popup content="Log Off" trigger={<Icon name="power off" onClick={handleLogOff}/>}/>
+              <Popup header="Log Off" size="small" trigger={<Icon name="power off" onClick={handleLogOff}/>} />
             </p>
           }
         </div>

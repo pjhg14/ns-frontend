@@ -1,18 +1,21 @@
 import { useState, useEffect, useContext } from "react"
-import { Button, Comment, Form, Icon } from "semantic-ui-react"
+import { Button, Comment, Dimmer, Form, Icon, Loader } from "semantic-ui-react"
 import { UserContext } from "./App"
+import { postURL } from '../util/links';
 
 function PostList({ group }) {
     const { id } = group
     const user = useContext(UserContext)
     const [userPost, setUserPost] = useState("")
     const [posts, setPosts] = useState([])
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
-        fetch(`http://localhost:9292/posts/${id}`)
+        fetch(`${postURL}/${id}`)
         .then(res => res.json())
         .then(postData => {
           setPosts(postData)
+          setIsLoaded(true)
         })
     }, [id])
 
@@ -57,10 +60,10 @@ function PostList({ group }) {
     }
 
     function handleDeletePost(target) {
-        fetch("http://localhost:9292/posts/" + target.id, {
+        fetch(postURL + target.id, {
             method: "DELETE",
         })
-            .then((resp) => resp.json())
+            .then(resp => resp.json())
             .then(newPosts => {
                 setPosts(newPosts)
             });
@@ -69,7 +72,13 @@ function PostList({ group }) {
     return(
         <Comment.Group>
             <h3>Posts:</h3>
-            {postList}
+            { isLoaded ? (
+                postList
+            ) : (
+                <Dimmer active>
+                    <Loader>Loading...</Loader>
+                </Dimmer>
+            )}
             <Form onSubmit={handlePostSubmit} reply>
               <Form.TextArea value={userPost} onChange={e => setUserPost(e.target.value)}/>
               <Button content='Add to Thread' labelPosition='left' icon='edit' disabled={user.get.id <= 0} primary />

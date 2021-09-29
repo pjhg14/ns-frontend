@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { Button, Input } from "semantic-ui-react"
+import { groupURL } from "../util/links"
 import { UserContext } from "./App"
 
 function AddGroupForm({ onGroupAdd }) {
@@ -14,14 +15,14 @@ function AddGroupForm({ onGroupAdd }) {
             user_id: user.get.id
         }
 
-        fetch("http://localhost:9292/groups", {
+        fetch(groupURL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(newGroup),
         })
-            .then((resp) => resp.json())
+            .then(resp => resp.json())
             .then(addedGroup => {
                 onGroupAdd(addedGroup)
             })

@@ -3,6 +3,15 @@ code {
     monospace;
 }
 
+#root {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.content {
+  padding: 5vw;
+}
+
 #navContainer {
   display: flex;
   flex-direction: row;
@@ -11,10 +20,12 @@ code {
   width: 100%;
 }
 
-#userStatus {
-  display: flex;
-  justify-content: flex-end;
-  right: 0;
+.comic-card {
+  overflow: hidden;
+}
+
+div.comic-segment {
+  min-height: 10vh;
 }
 
 #userNameBar {
@@ -94,7 +105,10 @@ a#menuItems.item {
   padding: 15px 0 15px 0;
 }
 
-.ui.column.grid>[class*="four wide"].column, .ui.grid>.column.row>[class*="four wide"].column, .ui.grid>.row>[class*="four wide"].column, .ui.grid>[class*="four wide"].column {
+.ui.column.grid>[class*="four wide"].column, 
+.ui.grid>.column.row>[class*="four wide"].column, 
+.ui.grid>.row>[class*="four wide"].column, 
+.ui.grid>[class*="four wide"].column {
   border: 1px solid;
 }
 div.ui.vertical.tabular.menu {
